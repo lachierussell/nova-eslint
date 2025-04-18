@@ -15,6 +15,7 @@ nova.config.onDidChange("com.parkcedar.eslint.config.eslintPath", async () => {
 	console.log("Updating ESLint executable globally", eslintPath);
 	nova.commands.invoke("com.parkcedar.eslint.config.lintAllEditors");
 });
+
 nova.workspace.config.onDidChange(
 	"com.parkcedar.eslint.config.eslintPath",
 	async () => {
@@ -23,11 +24,13 @@ nova.workspace.config.onDidChange(
 		nova.commands.invoke("com.parkcedar.eslint.config.lintAllEditors");
 	}
 );
+
 nova.config.onDidChange("com.parkcedar.eslint.config.eslintConfigPath", () => {
 	eslintConfigPath = getEslintConfig();
 	console.log("Updating ESLint config globally", eslintConfigPath);
 	nova.commands.invoke("com.parkcedar.eslint.config.lintAllEditors");
 });
+
 nova.workspace.config.onDidChange(
 	"com.parkcedar.eslint.config.eslintConfigPath",
 	() => {
@@ -36,11 +39,13 @@ nova.workspace.config.onDidChange(
 		nova.commands.invoke("com.parkcedar.eslint.config.lintAllEditors");
 	}
 );
+
 nova.config.onDidChange("com.parkcedar.eslint.config.eslintRulesDirs", () => {
 	eslintRulesDirs = getRulesDirs();
 	console.log("Updating ESLint rules globally");
 	nova.commands.invoke("com.parkcedar.eslint.config.lintAllEditors");
 });
+
 nova.workspace.config.onDidChange(
 	"com.parkcedar.eslint.config.eslintRulesDirs",
 	() => {
@@ -74,15 +79,10 @@ export type ESLintRunResults = ReadonlyArray<ESLint.LintResult>;
 function getConfig(
 	eslint: string,
 	forPath: string,
-	// eslint-disable-next-line no-unused-vars
+	 
 	callback: (config: Linter.Config) => void
 ): Disposable {
-	const cache = nova.config.get("com.parkcedar.eslint.config.useEslintCache", "boolean");
-	let args = ["--print-config", forPath]
-
-	if (cache) {
-		args.push("--cache")
-	}
+	const args = ["--print-config", forPath]
 
 	const process = new Process(eslint, {
 		args: args,
@@ -97,6 +97,7 @@ function getConfig(
 		const configProcessWasTerminated = status === 15;
 		if (status !== 0 && !configProcessWasTerminated) {
 			console.warn(stderr);
+			// TODO add error boundary and display as flag
 			throw new Error(`failed to get eslint config for ${forPath}: ${status}`);
 		}
 		if (configProcessWasTerminated) {
@@ -116,7 +117,7 @@ function verifySupportingPlugin(
 	eslint: string,
 	syntax: string | null,
 	path: string | null,
-	// eslint-disable-next-line no-unused-vars
+	 
 	callback: (message?: string) => void
 ): Disposable {
 	// if a plugin is required to parse this syntax we need to verify it's been found for this file
@@ -125,7 +126,7 @@ function verifySupportingPlugin(
 	if (supportingPlugins && path) {
 		return getConfig(eslint, path, (config) => {
 			if (
-				!config.plugins?.some((plugin) => supportingPlugins.includes(plugin))
+				!config.plugins?.some((plugin: string) => supportingPlugins.includes(plugin))
 			) {
 				callback(
 					`${syntax} requires installing one of the following plugins: ${supportingPlugins
@@ -148,9 +149,13 @@ class ESLintProcess implements Disposable {
 	constructor(
 		eslint: string,
 		args: string[],
-		// eslint-disable-next-line no-unused-vars
+		 
 		callback: (output: ESLintRunResults) => void
 	) {
+		const cache = nova.config.get("com.parkcedar.eslint.config.useEslintCache", "boolean");
+		if (cache) {
+			args.push("--cache")
+		}
 		this._process = new Process(eslint, {
 			args,
 			cwd: nova.workspace.path || undefined,
@@ -173,6 +178,7 @@ class ESLintProcess implements Disposable {
 				console.log("command: ", this._process.command);
 				console.log("args: ", ...(this._process.args ?? []));
 				console.groupEnd();
+				// TODO: error boundary & flag
 				throw new Error(`failed to lint (${status})`);
 			}
 			if (lintProcessWasTerminated) {
@@ -265,7 +271,7 @@ export function runLintPass(
 	content: string,
 	path: string | null,
 	syntax: string | null,
-	// eslint-disable-next-line no-unused-vars
+	 
 	callback: (output: ESLintRunResults) => void
 ): Disposable {
 	const disposable = new CompositeDisposable();
@@ -305,7 +311,7 @@ export function runLintPass(
 export function runFixPass(
 	path: string,
 	syntax: string | null,
-	// eslint-disable-next-line no-unused-vars
+	 
 	callback: (output: ESLintRunResults) => void
 ) {
 	const disposable = new CompositeDisposable();

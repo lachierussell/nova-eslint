@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "Lint your code files with ESLint in Nova.",
   "scripts": {
-    "build": "rollup -c rollup.config.js",
+    "build": "vite build",
     "test": "jest",
     "lint": "concurrently 'yarn:lint:*'",
     "lint:eslint": "eslint --ignore-path .lintignore \"**/*.{ts,js}\"",
@@ -12,7 +12,7 @@
     "fix": "concurrently 'yarn:fix:*'",
     "fix:eslint": "eslint --fix --ignore-path .lintignore \"**/*.{ts,js}\"",
     "fix:prettier": "prettier --ignore-path .lintignore --write \"**/*.{ts,js,json,md,yml}\"",
-    "watch": "onchange -i \"src/**\" \"rollup.*.js\" -- npm run build"
+    "watch": "onchange -i \"src/**\" \"vite.config.ts\" -- npm run build"
   },
   "repository": {
     "type": "git",
@@ -44,13 +44,16 @@
     "jest": "^27.5.1",
     "onchange": "^7.1.0",
     "prettier": "^2.8.8",
-    "rollup": "^2.79.1",
     "rollup-plugin-typescript2": "^0.35.0",
     "ts-jest": "^27.1.4",
-    "typescript": "^4.9.5"
+    "typescript": "^5.8.3"
   },
   "private": true,
   "resolutions": {
     "tslib": "^2.4.0"
+  },
+  "dependencies": {
+    "typescript-eslint": "^8.30.1",
+    "vite": "^6.3.2"
   }
 }
