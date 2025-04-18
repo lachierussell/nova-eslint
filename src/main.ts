@@ -27,16 +27,16 @@ async function asyncActivate() {
   }
 
   compositeDisposable.add(
-    nova.commands.register("com.lachlanrussell.eslint.command.fix", fix)
+    nova.commands.register("com.parkcedar.eslint.command.fix", fix)
   );
   compositeDisposable.add(
     nova.commands.register(
-      "com.lachlanrussell.eslint.command.suggestForCursor",
+      "com.parkcedar.eslint.command.suggestForCursor",
       createSuggestionCommandHandler(linter)
     )
   );
   compositeDisposable.add(
-    nova.commands.register("com.lachlanrussell.eslint.command.lintAllEditors", () => {
+    nova.commands.register("com.parkcedar.eslint.command.lintAllEditors", () => {
       nova.workspace.textEditors.forEach((editor) => {
         linter.lintDocument(editor.document);
       });

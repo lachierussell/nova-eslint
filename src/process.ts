@@ -10,43 +10,43 @@ let eslintRulesDirs: Array<string> | null = null;
 const sep = "/";
 
 // TODO: Clean up these disposables on deactivation
-nova.config.onDidChange("com.lachlanrussell.eslint.config.eslintPath", async () => {
+nova.config.onDidChange("com.parkcedar.eslint.config.eslintPath", async () => {
   eslintPath = await getEslintPath();
   console.log("Updating ESLint executable globally", eslintPath);
-  nova.commands.invoke("com.lachlanrussell.eslint.config.lintAllEditors");
+  nova.commands.invoke("com.parkcedar.eslint.config.lintAllEditors");
 });
 nova.workspace.config.onDidChange(
-  "com.lachlanrussell.eslint.config.eslintPath",
+  "com.parkcedar.eslint.config.eslintPath",
   async () => {
     eslintPath = await getEslintPath();
     console.log("Updating ESLint executable for workspace", eslintPath);
-    nova.commands.invoke("com.lachlanrussell.eslint.config.lintAllEditors");
+    nova.commands.invoke("com.parkcedar.eslint.config.lintAllEditors");
   }
 );
-nova.config.onDidChange("com.lachlanrussell.eslint.config.eslintConfigPath", () => {
+nova.config.onDidChange("com.parkcedar.eslint.config.eslintConfigPath", () => {
   eslintConfigPath = getEslintConfig();
   console.log("Updating ESLint config globally", eslintConfigPath);
-  nova.commands.invoke("com.lachlanrussell.eslint.config.lintAllEditors");
+  nova.commands.invoke("com.parkcedar.eslint.config.lintAllEditors");
 });
 nova.workspace.config.onDidChange(
-  "com.lachlanrussell.eslint.config.eslintConfigPath",
+  "com.parkcedar.eslint.config.eslintConfigPath",
   () => {
     eslintConfigPath = getEslintConfig();
     console.log("Updating ESLint config for workspace", eslintConfigPath);
-    nova.commands.invoke("com.lachlanrussell.eslint.config.lintAllEditors");
+    nova.commands.invoke("com.parkcedar.eslint.config.lintAllEditors");
   }
 );
-nova.config.onDidChange("com.lachlanrussell.eslint.config.eslintRulesDirs", () => {
+nova.config.onDidChange("com.parkcedar.eslint.config.eslintRulesDirs", () => {
   eslintRulesDirs = getRulesDirs();
   console.log("Updating ESLint rules globally");
-  nova.commands.invoke("com.lachlanrussell.eslint.config.lintAllEditors");
+  nova.commands.invoke("com.parkcedar.eslint.config.lintAllEditors");
 });
 nova.workspace.config.onDidChange(
-  "com.lachlanrussell.eslint.config.eslintRulesDirs",
+  "com.parkcedar.eslint.config.eslintRulesDirs",
   () => {
     eslintRulesDirs = getRulesDirs();
     console.log("Updating ESLint rules for workspace");
-    nova.commands.invoke("com.lachlanrussell.eslint.config.lintAllEditors");
+    nova.commands.invoke("com.parkcedar.eslint.config.lintAllEditors");
   }
 );
 
@@ -77,7 +77,7 @@ function getConfig(
   // eslint-disable-next-line no-unused-vars
   callback: (config: Linter.Config) => void
 ): Disposable {  
-  const cache = nova.config.get("com.lachlanrussell.eslint.config.useEslintCache", "boolean");
+  const cache = nova.config.get("com.parkcedar.eslint.config.useEslintCache", "boolean");
   let args = ["--print-config", forPath]
   
   if (cache) {
