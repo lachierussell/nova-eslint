@@ -45,16 +45,30 @@ function getPriorityPath(): string | null {
 	return null;
 }
 
+async function setErrorMessage(path: string | null) {
+	const request = new NotificationRequest("eslint-not-found");
+
+	request.title = nova.localize("ESLint Executable Not Found");
+	request.body = nova.localize(`Couldn't find or execute ${path}`);
+
+	return nova.notifications.add(request);
+}
+
 // this determines where the eslint executable is
 export async function getEslintPath(): Promise<string | null> {
-	const execPath = getPriorityPath();
+	let execPath = getPriorityPath();
+	const warnPath = execPath;
 
 	// Configured doesn't work; or
 	// No eslint configured (throw a single error - maybe use a toast to avoid hogging the screen).
 	if (execPath) {
 		if (!nova.fs.access(execPath, nova.fs.X_OK)) {
-			return null;
+			execPath = null;
 		}
+	}
+
+	if (execPath === null) {
+		setErrorMessage(warnPath)
 	}
 
 	return execPath;
