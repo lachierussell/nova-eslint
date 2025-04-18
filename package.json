@@ -34,7 +34,7 @@
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
     "concurrently": "^8.2.2",
-    "eslint": "^7.32.0",
+    "eslint": "^9.24.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-custom-rules": "file:./test/rules-1/custom-rules",
     "eslint-plugin-html": "^7.1.0",

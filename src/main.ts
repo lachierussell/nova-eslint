@@ -6,119 +6,119 @@ import { createSuggestionCommandHandler } from "./suggestionCommand";
 const compositeDisposable = new CompositeDisposable();
 
 async function asyncActivate() {
-  await initialize();
+	await initialize();
 
-  const linter = new Linter();
-  compositeDisposable.add(linter);
+	const linter = new Linter();
+	compositeDisposable.add(linter);
 
-  // eslint-disable-next-line no-unused-vars
-  async function fix(workspace: Workspace, editor: TextEditor): Promise<void>;
-  // eslint-disable-next-line no-unused-vars
-  async function fix(editor: TextEditor): Promise<void>;
-  async function fix(
-    workspaceOrEditor: Workspace | TextEditor,
-    maybeEditor?: TextEditor
-  ): Promise<void> {
-    const editor = TextEditor.isTextEditor(workspaceOrEditor)
-      ? workspaceOrEditor
-      : maybeEditor!;
+	// eslint-disable-next-line no-unused-vars
+	async function fix(workspace: Workspace, editor: TextEditor): Promise<void>;
+	// eslint-disable-next-line no-unused-vars
+	async function fix(editor: TextEditor): Promise<void>;
+	async function fix(
+		workspaceOrEditor: Workspace | TextEditor,
+		maybeEditor?: TextEditor
+	): Promise<void> {
+		const editor = TextEditor.isTextEditor(workspaceOrEditor)
+			? workspaceOrEditor
+			: maybeEditor!;
 
-    await linter.fixEditor(editor);
-  }
+		await linter.fixEditor(editor);
+	}
 
-  compositeDisposable.add(
-    nova.commands.register("com.parkcedar.eslint.command.fix", fix)
-  );
-  compositeDisposable.add(
-    nova.commands.register(
-      "com.parkcedar.eslint.command.suggestForCursor",
-      createSuggestionCommandHandler(linter)
-    )
-  );
-  compositeDisposable.add(
-    nova.commands.register("com.parkcedar.eslint.command.lintAllEditors", () => {
-      nova.workspace.textEditors.forEach((editor) => {
-        linter.lintDocument(editor.document);
-      });
-    })
-  );
+	compositeDisposable.add(
+		nova.commands.register("com.parkcedar.eslint.command.fix", fix)
+	);
+	compositeDisposable.add(
+		nova.commands.register(
+			"com.parkcedar.eslint.command.suggestForCursor",
+			createSuggestionCommandHandler(linter)
+		)
+	);
+	compositeDisposable.add(
+		nova.commands.register("com.parkcedar.eslint.command.lintAllEditors", () => {
+			nova.workspace.textEditors.forEach((editor) => {
+				linter.lintDocument(editor.document);
+			});
+		})
+	);
 
-  compositeDisposable.add(nova.workspace.onDidAddTextEditor(watchEditor));
+	compositeDisposable.add(nova.workspace.onDidAddTextEditor(watchEditor));
 
-  function watchEditor(editor: TextEditor) {
-    const document = editor.document;
+	function watchEditor(editor: TextEditor) {
+		const document = editor.document;
 
-    if (
-      ![
-        "javascript",
-        "typescript",
-        "tsx",
-        "jsx",
-        "vue",
-        "html",
-        "markdown",
-      ].includes(document.syntax ?? "")
-    ) {
-      return;
-    }
+		if (
+			![
+				"javascript",
+				"typescript",
+				"tsx",
+				"jsx",
+				"vue",
+				"html",
+				"markdown",
+			].includes(document.syntax ?? "")
+		) {
+			return;
+		}
 
-    linter.lintDocument(document);
+		linter.lintDocument(document);
 
-    const editorDisposable = new CompositeDisposable();
+		const editorDisposable = new CompositeDisposable();
 
-    editorDisposable.add(
-      editor.onWillSave(async (editor) => {
-        if (shouldFixOnSave()) {
-          await linter.fixEditor(editor);
-        }
-        linter.lintDocument(editor.document);
-      })
-    );
-    editorDisposable.add(
-      editor.onDidChange((editor) => linter.dirtyDocument(editor.document))
-    );
-    editorDisposable.add(
-      editor.onDidStopChanging((editor) => linter.lintDocument(editor.document))
-    );
-    editorDisposable.add(
-      editor.onDidDestroy((destroyedEditor) => {
-        const anotherEditor = nova.workspace.textEditors.find(
-          (editor) => editor.document.uri === destroyedEditor.document.uri
-        );
+		editorDisposable.add(
+			editor.onWillSave(async (editor) => {
+				if (shouldFixOnSave()) {
+					await linter.fixEditor(editor);
+				}
+				linter.lintDocument(editor.document);
+			})
+		);
+		editorDisposable.add(
+			editor.onDidChange((editor) => linter.dirtyDocument(editor.document))
+		);
+		editorDisposable.add(
+			editor.onDidStopChanging((editor) => linter.lintDocument(editor.document))
+		);
+		editorDisposable.add(
+			editor.onDidDestroy((destroyedEditor) => {
+				const anotherEditor = nova.workspace.textEditors.find(
+					(editor) => editor.document.uri === destroyedEditor.document.uri
+				);
 
-        if (!anotherEditor) {
-          linter.removeIssues(destroyedEditor.document.uri);
-        }
-        editorDisposable.dispose();
-      })
-    );
+				if (!anotherEditor) {
+					linter.removeIssues(destroyedEditor.document.uri);
+				}
+				editorDisposable.dispose();
+			})
+		);
 
-    compositeDisposable.add(editorDisposable);
+		compositeDisposable.add(editorDisposable);
 
-    compositeDisposable.add(
-      document.onDidChangeSyntax((document) => linter.lintDocument(document))
-    );
-  }
+		compositeDisposable.add(
+			document.onDidChangeSyntax((document) => linter.lintDocument(document))
+		);
+	}
 }
 
 export function activate() {
-  console.log("activating...");
-  if (nova.inDevMode()) {
-    const notification = new NotificationRequest("activated");
-    notification.body = "ESLint extension is loading";
-    nova.notifications.add(notification);
-  }
-  return asyncActivate()
-    .catch((err) => {
-      console.error("Failed to activate");
-      console.error(err);
-      nova.workspace.showErrorMessage(err);
-    })
-    .then(() => {
-      console.log("activated");
-    });
+	console.log("activating...");
+	if (nova.inDevMode()) {
+		const notification = new NotificationRequest("activated");
+		notification.body = "ESLint extension is loading";
+		nova.notifications.add(notification);
+	}
+	return asyncActivate()
+		.catch((err) => {
+			console.error("Failed to activate");
+			console.error(err);
+			nova.workspace.showErrorMessage(err);
+		})
+		.then(() => {
+			console.log("activated");
+		});
 }
 
 export function deactivate() {
-  compositeDisposable.dispose();
+	compositeDisposable.dispose();
 }
