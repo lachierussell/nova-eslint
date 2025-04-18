@@ -18,16 +18,15 @@ function getPathFromConfig(): string | null {
 			return null;
 		}
 	}
-	return null
+	return null;
 }
 
 function getPathFromLocal(): string | null {
-	return null
+	return null;
 }
 
-
 function getPathFromGlobal(): string | null {
-	return null
+	return null;
 }
 
 function getPriorityPath(): string | null {
@@ -43,7 +42,7 @@ function getPriorityPath(): string | null {
 	path = getPathFromGlobal();
 	if (path) return path;
 
-	return null
+	return null;
 }
 
 // this determines where the eslint executable is
