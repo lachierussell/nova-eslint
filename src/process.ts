@@ -1,6 +1,6 @@
-import type { Linter, ESLint } from "eslint";
-import { getEslintPath } from "./getEslintPath";
+import type { ESLint, Linter } from "eslint";
 import { getEslintConfig } from "./getEslintConfig";
+import { getEslintPath } from "./getEslintPath";
 import { getRulesDirs } from "./getRulesDirs";
 
 let eslintPath: string | null = null;
@@ -76,9 +76,16 @@ function getConfig(
   forPath: string,
   // eslint-disable-next-line no-unused-vars
   callback: (config: Linter.Config) => void
-): Disposable {
+): Disposable {  
+  const cache = nova.config.get("apexskier.eslint.config.useEslintCache", "boolean");
+  let args = ["--print-config", forPath]
+  
+  if (cache) {
+    args.push("--cache")
+  }
+  
   const process = new Process(eslint, {
-    args: ["--print-config", forPath],
+    args: args,
     cwd: nova.workspace.path || undefined,
     stdio: "pipe",
   });

@@ -33,6 +33,18 @@
       "default": false
     },
     {
+      "key": "apexskier.eslint.config.lowSeverity",
+      "title": "Low Severity",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "key": "apexskier.eslint.config.useEslintCache",
+      "title": "Use ESLint Cache (might speed up performance on very large repos)",
+      "type": "boolean",
+      "default": false
+    },
+    {
       "key": "apexskier.eslint.config.eslintPath",
       "title": "ESLint executable",
       "type": "path"
