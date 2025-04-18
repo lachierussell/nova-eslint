@@ -1,7 +1,7 @@
 {
   "identifier": "com.lachlanrussell.eslint",
   "name": "ESLint",
-  "organization": "Lachlan Russell",
+  "organization": "ParkCedar Pty Ltd",
   "description": "Lint your code with ESLint.",
   "version": "1.8",
   "categories": ["issues", "formatters", "commands"],
