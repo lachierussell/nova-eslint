@@ -1,13 +1,13 @@
 {
-  "identifier": "apexskier.eslint",
+  "identifier": "com.lachlanrussell.eslint",
   "name": "ESLint",
-  "organization": "Cameron Little",
+  "organization": "Lachlan Russell",
   "description": "Lint your code with ESLint.",
-  "version": "1.7.3",
+  "version": "1.8",
   "categories": ["issues", "formatters", "commands"],
-  "homepage": "https://github.com/apexskier/nova-eslint#readme",
-  "repository": "https://github.com/apexskier/nova-eslint",
-  "bugs": "https://github.com/apexskier/nova-eslint/issues",
+  "homepage": "https://github.com/lachierussell/nova-eslint#readme",
+  "repository": "https://github.com/lachierussell/nova-eslint",
+  "bugs": "https://github.com/lachierussell/nova-eslint/issues",
   "license": "MIT",
 
   "main": "main.dist.js",
@@ -27,23 +27,35 @@
 
   "config": [
     {
-      "key": "apexskier.eslint.config.fixOnSave",
+      "key": "com.lachlanrussell.eslint.config.fixOnSave",
       "title": "Fix on save",
       "type": "boolean",
       "default": false
     },
     {
-      "key": "apexskier.eslint.config.eslintPath",
+      "key": "com.lachlanrussell.eslint.config.lowSeverity",
+      "title": "Low Severity",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "key": "com.lachlanrussell.eslint.config.useEslintCache",
+      "title": "Use ESLint Cache (might speed up performance on very large repos)",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "key": "com.lachlanrussell.eslint.config.eslintPath",
       "title": "ESLint executable",
       "type": "path"
     },
     {
-      "key": "apexskier.eslint.config.eslintConfigPath",
+      "key": "com.lachlanrussell.eslint.config.eslintConfigPath",
       "title": "ESLint configuration",
       "type": "path"
     },
     {
-      "key": "apexskier.eslint.config.eslintRulesDirs",
+      "key": "com.lachlanrussell.eslint.config.eslintRulesDirs",
       "title": "Rules directories",
       "link": "https://eslint.org/docs/user-guide/command-line-interface#-rulesdir",
       "type": "pathArray",
@@ -54,27 +66,27 @@
 
   "configWorkspace": [
     {
-      "key": "apexskier.eslint.config.fixOnSave",
+      "key": "com.lachlanrussell.eslint.config.fixOnSave",
       "title": "Fix on save",
       "type": "enum",
       "values": ["Inherit from Global Settings", "Disable", "Enable"],
       "default": "Inherit from Global Settings"
     },
     {
-      "key": "apexskier.eslint.config.eslintPath",
+      "key": "com.lachlanrussell.eslint.config.eslintPath",
       "title": "ESLint executable",
       "type": "path",
       "relative": true
     },
     {
-      "key": "apexskier.eslint.config.eslintConfigPath",
+      "key": "com.lachlanrussell.eslint.config.eslintConfigPath",
       "title": "ESLint configuration",
       "link": "https://eslint.org/docs/user-guide/configuring#configuration-file-formats",
       "type": "path",
       "relative": true
     },
     {
-      "key": "apexskier.eslint.config.eslintRulesDirs",
+      "key": "com.lachlanrussell.eslint.config.eslintRulesDirs",
       "title": "Rules directories",
       "link": "https://eslint.org/docs/user-guide/command-line-interface#-rulesdir",
       "type": "pathArray",
@@ -88,7 +100,7 @@
     "editor": [
       {
         "title": "Fix All Issues",
-        "command": "apexskier.eslint.command.fix",
+        "command": "com.lachlanrussell.eslint.command.fix",
         "when": "documentHasPath && editorHasFocus",
         "filters": {
           "syntaxes": [
@@ -104,7 +116,7 @@
       },
       {
         "title": "Apply a Suggestion",
-        "command": "apexskier.eslint.command.suggestForCursor",
+        "command": "com.lachlanrussell.eslint.command.suggestForCursor",
         "when": "editorHasFocus",
         "filters": {
           "syntaxes": [

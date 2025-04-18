@@ -55,13 +55,13 @@ describe("getEslintPath", () => {
     expect(nova.workspace.config.get).toBeCalledTimes(1);
     expect(nova.workspace.config.get).toHaveBeenNthCalledWith(
       1,
-      "apexskier.eslint.config.eslintPath",
+      "com.lachlanrussell.eslint.config.eslintPath",
       "string"
     );
     expect(nova.config.get).toBeCalledTimes(1);
     expect(nova.config.get).toHaveBeenNthCalledWith(
       1,
-      "apexskier.eslint.config.eslintPath",
+      "com.lachlanrussell.eslint.config.eslintPath",
       "string"
     );
   });
@@ -74,7 +74,7 @@ describe("getEslintPath", () => {
     expect(nova.workspace.config.get).toBeCalledTimes(1);
     expect(nova.workspace.config.get).toHaveBeenNthCalledWith(
       1,
-      "apexskier.eslint.config.eslintPath",
+      "com.lachlanrussell.eslint.config.eslintPath",
       "string"
     );
     expect(nova.config.get).toBeCalledTimes(0);
@@ -89,7 +89,7 @@ describe("getEslintPath", () => {
     expect(nova.workspace.config.get).toBeCalledTimes(1);
     expect(nova.workspace.config.get).toHaveBeenNthCalledWith(
       1,
-      "apexskier.eslint.config.eslintPath",
+      "com.lachlanrussell.eslint.config.eslintPath",
       "string"
     );
     expect(nova.config.get).toBeCalledTimes(0);

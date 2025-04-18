@@ -1,14 +1,17 @@
 import type { Linter } from "eslint";
 
 function eslintSeverityToNovaSeverity(severity: Linter.Severity) {
-  switch (severity) {
-    case 0:
-      return IssueSeverity.Info;
-    case 1:
-      return IssueSeverity.Warning;
-    case 2:
-      return IssueSeverity.Error;
+  const issueSev = [IssueSeverity.Info, IssueSeverity.Warning, IssueSeverity.Error];
+  const lowSev = nova.config.get("com.lachlanrussell.eslint.config.lowSeverity", "boolean")
+  
+  // Downgrades errors to warnings and warnings to info. Info stays as info.
+  // Used when strict eslint checks are enabled and you want to quiet down the IDE
+  // so you can actually spot really TS errors.
+  if (lowSev && severity > 0) {
+    severity--
   }
+  
+  return issueSev[severity];
 }
 
 export function eslintOutputToIssue(attributes: Linter.LintMessage) {

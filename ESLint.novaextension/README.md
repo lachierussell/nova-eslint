@@ -1,7 +1,6 @@
 ⚠️ **Archived**: Although it was fun to build my nova extensions, I haven't ended up using Nova regularly and can't devote the time to maintenance. Feel free to reach out if you want to fork and start maintaining an alternative.
 
 # ESLint Extension for Nova
-
 Provides integration with ESLint to lint your code.
 
 ## Features
@@ -38,3 +37,6 @@ To verify you've set up correctly, run `$(npm bin)/eslint ./path/to/file.js` on 
 **NOTE:** This is a fork of an earlier version of this plugin. See https://github.com/jsmecham/nova-eslint/pull/6 for more context on why I forked.
 
 **UPDATE:** Since forking, this extension has overtaken the original in total installs. Because forked repositories have some management limitations and the code has evolved so much, I've unforked on GitHub. The original fork is present at https://github.com/apexskier/nova-eslint-forked.
+
+**UPDATE 2:** The fork by Cameron Little was archived. I have decided to fork it again to continue 
+adding minor features to improve ESLint for my own usage.

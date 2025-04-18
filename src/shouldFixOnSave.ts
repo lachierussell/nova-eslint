@@ -1,6 +1,6 @@
 function getWorkspaceSetting(): boolean | null {
   const str = nova.workspace.config.get(
-    "apexskier.eslint.config.fixOnSave",
+    "com.lachlanrussell.eslint.config.fixOnSave",
     "string"
   );
   switch (str) {
@@ -16,7 +16,7 @@ function getWorkspaceSetting(): boolean | null {
 export function shouldFixOnSave(): boolean {
   return (
     getWorkspaceSetting() ??
-    nova.config.get("apexskier.eslint.config.fixOnSave", "boolean") ??
+    nova.config.get("com.lachlanrussell.eslint.config.fixOnSave", "boolean") ??
     false
   );
 }
