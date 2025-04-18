@@ -103,7 +103,7 @@ export function createSuggestionCommandHandler(linter: Linter) {
       return;
     }
     if (isFixAll(choice)) {
-      nova.commands.invoke("apexskier.eslint.command.fix", editor);
+      nova.commands.invoke("com.lachlanrussell.eslint.command.fix", editor);
     } else {
       const { fix, clear } = choice;
       const [start, end] = fix.range;

@@ -16,12 +16,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/apexskier/nova-eslint.git"
+    "url": "git+https://github.com/lachierussell/nova-eslint.git"
   },
-  "author": "Cameron Little",
+  "author": "Lachlan Russell",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/apexskier/nova-eslint/issues"
+    "url": "https://github.com/lachierussell/nova-eslint/issues"
   },
   "devDependencies": {
     "@html-eslint/eslint-plugin": "^0.13.1",

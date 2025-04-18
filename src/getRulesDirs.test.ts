@@ -22,13 +22,13 @@ describe("getRulesDirs", () => {
     expect(nova.workspace.config.get).toBeCalledTimes(1);
     expect(nova.workspace.config.get).toHaveBeenNthCalledWith(
       1,
-      "apexskier.eslint.config.eslintRulesDirs",
+      "com.lachlanrussell.eslint.config.eslintRulesDirs",
       "array"
     );
     expect(nova.config.get).toBeCalledTimes(1);
     expect(nova.config.get).toHaveBeenNthCalledWith(
       1,
-      "apexskier.eslint.config.eslintRulesDirs",
+      "com.lachlanrussell.eslint.config.eslintRulesDirs",
       "array"
     );
   });

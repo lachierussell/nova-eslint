@@ -16,13 +16,13 @@ describe("shouldFixOnSave", () => {
     expect(nova.workspace.config.get).toBeCalledTimes(1);
     expect(nova.workspace.config.get).toHaveBeenNthCalledWith(
       1,
-      "apexskier.eslint.config.fixOnSave",
+      "com.lachlanrussell.eslint.config.fixOnSave",
       "string"
     );
     expect(nova.config.get).toBeCalledTimes(1);
     expect(nova.config.get).toHaveBeenNthCalledWith(
       1,
-      "apexskier.eslint.config.fixOnSave",
+      "com.lachlanrussell.eslint.config.fixOnSave",
       "boolean"
     );
   });
@@ -35,7 +35,7 @@ describe("shouldFixOnSave", () => {
     expect(nova.workspace.config.get).toBeCalledTimes(1);
     expect(nova.workspace.config.get).toHaveBeenNthCalledWith(
       1,
-      "apexskier.eslint.config.fixOnSave",
+      "com.lachlanrussell.eslint.config.fixOnSave",
       "string"
     );
     expect(nova.config.get).not.toBeCalled();
@@ -50,7 +50,7 @@ describe("shouldFixOnSave", () => {
     expect(nova.workspace.config.get).toBeCalledTimes(1);
     expect(nova.workspace.config.get).toHaveBeenNthCalledWith(
       1,
-      "apexskier.eslint.config.fixOnSave",
+      "com.lachlanrussell.eslint.config.fixOnSave",
       "string"
     );
     expect(nova.config.get).toBeCalledTimes(0);
@@ -63,13 +63,13 @@ describe("shouldFixOnSave", () => {
     expect(nova.workspace.config.get).toBeCalledTimes(1);
     expect(nova.workspace.config.get).toHaveBeenNthCalledWith(
       1,
-      "apexskier.eslint.config.fixOnSave",
+      "com.lachlanrussell.eslint.config.fixOnSave",
       "string"
     );
     expect(nova.config.get).toBeCalledTimes(1);
     expect(nova.config.get).toHaveBeenNthCalledWith(
       1,
-      "apexskier.eslint.config.fixOnSave",
+      "com.lachlanrussell.eslint.config.fixOnSave",
       "boolean"
     );
   });

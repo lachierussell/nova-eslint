@@ -137,7 +137,7 @@ describe("suggestion command", () => {
     expect(nova.commands.invoke).toBeCalledTimes(1);
     expect(nova.commands.invoke).toHaveBeenNthCalledWith(
       1,
-      "apexskier.eslint.command.fix",
+      "com.lachlanrussell.eslint.command.fix",
       mockEditor
     );
 
