@@ -1,11 +1,11 @@
-⚠️ **Archived**: Although it was fun to build my nova extensions, I haven't ended up using Nova regularly and can't devote the time to maintenance. Feel free to reach out if you want to fork and start maintaining an alternative.
-
 # ESLint Extension for Nova
 Provides integration with ESLint to lint your code.
 
-## Features
+> Forked from ESLint by Cameron Little with new features.
 
+## Features
 - Inline ESLint issue reporting
+- "Low Severity" to show eslint errors as a lower level to remove a flood of red from your IDE
 - "Fix All Issues" command
 - "Apply a Suggestion" command ([more information](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions))
 - Quick suggestion to ignore an issue

@@ -1,5 +1,6 @@
 {
-  "apexskier.eslint.config.fixOnSave": "Enable",
-  "editor.default_syntax": "typescript",
-  "workspace.name": "ESLint Extension"
+  "apexskier.eslint.config.fixOnSave" : "Enable",
+  "com.lachlanrussell.eslint.config.eslintPath" : "node_modules\/eslint\/bin\/eslint.js",
+  "editor.default_syntax" : "typescript",
+  "workspace.name" : "ESLint Extension"
 }
