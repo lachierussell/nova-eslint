@@ -1,9 +1,9 @@
 // returns custom eslint rules directories
 export function getRulesDirs(): Array<string> | null {
   const rulesDirs: Array<string> =
-    nova.config.get("com.lachlanrussell.eslint.config.eslintRulesDirs", "array") ?? [];
+    nova.config.get("com.parkcedar.eslint.config.eslintRulesDirs", "array") ?? [];
   const workspaceRulesDirs = nova.workspace.config.get(
-    "com.lachlanrussell.eslint.config.eslintRulesDirs",
+    "com.parkcedar.eslint.config.eslintRulesDirs",
     "array"
   );
   if (workspaceRulesDirs) {

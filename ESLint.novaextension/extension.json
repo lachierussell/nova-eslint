@@ -1,5 +1,5 @@
 {
-  "identifier": "com.lachlanrussell.eslint",
+  "identifier": "com.parkcedar.eslint",
   "name": "ESLint",
   "organization": "ParkCedar Pty Ltd",
   "description": "Lint your code with ESLint.",
@@ -27,35 +27,35 @@
 
   "config": [
     {
-      "key": "com.lachlanrussell.eslint.config.fixOnSave",
+      "key": "com.parkcedar.eslint.config.fixOnSave",
       "title": "Fix on save",
       "type": "boolean",
       "default": false
     },
     {
-      "key": "com.lachlanrussell.eslint.config.lowSeverity",
+      "key": "com.parkcedar.eslint.config.lowSeverity",
       "title": "Low Severity",
       "type": "boolean",
       "default": false
     },
     {
-      "key": "com.lachlanrussell.eslint.config.useEslintCache",
+      "key": "com.parkcedar.eslint.config.useEslintCache",
       "title": "Use ESLint Cache (might speed up performance on very large repos)",
       "type": "boolean",
       "default": false
     },
     {
-      "key": "com.lachlanrussell.eslint.config.eslintPath",
+      "key": "com.parkcedar.eslint.config.eslintPath",
       "title": "ESLint executable",
       "type": "path"
     },
     {
-      "key": "com.lachlanrussell.eslint.config.eslintConfigPath",
+      "key": "com.parkcedar.eslint.config.eslintConfigPath",
       "title": "ESLint configuration",
       "type": "path"
     },
     {
-      "key": "com.lachlanrussell.eslint.config.eslintRulesDirs",
+      "key": "com.parkcedar.eslint.config.eslintRulesDirs",
       "title": "Rules directories",
       "link": "https://eslint.org/docs/user-guide/command-line-interface#-rulesdir",
       "type": "pathArray",
@@ -66,27 +66,27 @@
 
   "configWorkspace": [
     {
-      "key": "com.lachlanrussell.eslint.config.fixOnSave",
+      "key": "com.parkcedar.eslint.config.fixOnSave",
       "title": "Fix on save",
       "type": "enum",
       "values": ["Inherit from Global Settings", "Disable", "Enable"],
       "default": "Inherit from Global Settings"
     },
     {
-      "key": "com.lachlanrussell.eslint.config.eslintPath",
+      "key": "com.parkcedar.eslint.config.eslintPath",
       "title": "ESLint executable",
       "type": "path",
       "relative": true
     },
     {
-      "key": "com.lachlanrussell.eslint.config.eslintConfigPath",
+      "key": "com.parkcedar.eslint.config.eslintConfigPath",
       "title": "ESLint configuration",
       "link": "https://eslint.org/docs/user-guide/configuring#configuration-file-formats",
       "type": "path",
       "relative": true
     },
     {
-      "key": "com.lachlanrussell.eslint.config.eslintRulesDirs",
+      "key": "com.parkcedar.eslint.config.eslintRulesDirs",
       "title": "Rules directories",
       "link": "https://eslint.org/docs/user-guide/command-line-interface#-rulesdir",
       "type": "pathArray",
@@ -100,7 +100,7 @@
     "editor": [
       {
         "title": "Fix All Issues",
-        "command": "com.lachlanrussell.eslint.command.fix",
+        "command": "com.parkcedar.eslint.command.fix",
         "when": "documentHasPath && editorHasFocus",
         "filters": {
           "syntaxes": [
@@ -116,7 +116,7 @@
       },
       {
         "title": "Apply a Suggestion",
-        "command": "com.lachlanrussell.eslint.command.suggestForCursor",
+        "command": "com.parkcedar.eslint.command.suggestForCursor",
         "when": "editorHasFocus",
         "filters": {
           "syntaxes": [

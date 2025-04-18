@@ -2,7 +2,7 @@ import type { Linter } from "eslint";
 
 function eslintSeverityToNovaSeverity(severity: Linter.Severity) {
   const issueSev = [IssueSeverity.Info, IssueSeverity.Warning, IssueSeverity.Error];
-  const lowSev = nova.config.get("com.lachlanrussell.eslint.config.lowSeverity", "boolean")
+  const lowSev = nova.config.get("com.parkcedar.eslint.config.lowSeverity", "boolean")
   
   // Downgrades errors to warnings and warnings to info. Info stays as info.
   // Used when strict eslint checks are enabled and you want to quiet down the IDE

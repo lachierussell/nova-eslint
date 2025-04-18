@@ -29,13 +29,13 @@ describe("getEslintConfig", () => {
     expect(nova.workspace.config.get).toBeCalledTimes(1);
     expect(nova.workspace.config.get).toHaveBeenNthCalledWith(
       1,
-      "com.lachlanrussell.eslint.config.eslintConfigPath",
+      "com.parkcedar.eslint.config.eslintConfigPath",
       "string"
     );
     expect(nova.config.get).toBeCalledTimes(1);
     expect(nova.config.get).toHaveBeenNthCalledWith(
       1,
-      "com.lachlanrussell.eslint.config.eslintConfigPath",
+      "com.parkcedar.eslint.config.eslintConfigPath",
       "string"
     );
   });
